@@ -123,17 +123,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/apex/com.google.android.art.apex
 
-# Optional Bluetooth
-MAINLINE_INCLUDE_BTSERVICES_MODULE ?= false
-ifeq ($(MAINLINE_INCLUDE_BTSERVICES_MODULE),true)
-SOONG_CONFIG_btservices_module_source_build := false
-
-PRODUCT_PACKAGES += \
-    com.google.android.btservices
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/apex/com.google.android.btservices.apex
-endif
-
 # CellBroadcast
 PRODUCT_PACKAGES += \
     com.google.android.cellbroadcast

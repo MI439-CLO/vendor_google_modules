@@ -87,31 +87,6 @@ art_prebuilt_apex_set {
     exported_systemserverclasspath_fragments: ["art-systemserverclasspath-fragment"],
 }
 
-// BluetoothPrebuilt
-module_apex_prebuilt {
-    name: "com.google.android.btservices",
-    apex_name: "com.android.btservices",
-    owner: "google",
-    src: "proprietary/system/apex/com.google.android.btservices.apex",
-    overrides: [
-        "com.android.bluetooth",
-        "com.android.bluetooth.debug",
-        "com.android.btservices",
-        "com.android.btservices.debug",
-    ],
-    required: ["android.hardware.bluetooth@1.1",
-               "android.hardware.bluetooth.audio@2.1",
-               "android.hardware.bluetooth.audio-V3-ndk"],
-    prefer: true,
-    soong_config_variables: {
-        module_build_from_source: {
-            prefer: false,
-        },
-    },
-    exported_bootclasspath_fragments: ["com.android.btservices-bootclasspath-fragment"],
-    exported_systemserverclasspath_fragments: ["com.android.btservices-systemserverclasspath-fragment"],
-}
-
 // CellBroadcastPrebuilt
 module_apex_prebuilt {
     name: "com.google.android.cellbroadcast",

@@ -5,7 +5,6 @@ system/system/apex/com.google.android.adbd.apex
 system/system/apex/com.google.android.adservices.apex
 system/system/apex/com.google.android.appsearch.apex
 system/system/apex/com.google.android.art.apex
-system/system/apex/com.google.android.btservices.apex
 system/system/apex/com.google.android.cellbroadcast.apex
 system/system/apex/com.google.android.configinfrastructure.apex
 system/system/apex/com.google.android.conscrypt.apex
@@ -33,9 +32,6 @@ system/system/apex/com.google.mainline.primary.libs.apex
 
 # Virtualization
 system_ext/apex/com.google.android.compos.apex
-
-# Google Bluetooth Legacy Migration
-system/app/GoogleBluetoothLegacyMigration/GoogleBluetoothLegacyMigration.apk;PRESIGNED
 
 # DocumentsUI Google
 system/priv-app/DocumentsUIGoogle/DocumentsUIGoogle.apk;OVERRIDES=DocumentsUI;PRESIGNED
