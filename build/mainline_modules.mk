@@ -33,7 +33,22 @@
 #
 
 PRODUCT_SOONG_NAMESPACES += \
-    vendor/mainline_modules/common
+    vendor/google/modules/common
+
+# FIXME -- DeviceLock ModulePrebuilt is only planned to be released for QPR2
+DISABLE_DEXPREOPT_CHECK := true
+
+ifneq ($(MAINLINE_INCLUDE_UWB_MODULE), false)
+MAINLINE_INCLUDE_UWB_MODULE := true
+endif
+
+ifneq ($(MAINLINE_INCLUDE_WIFI_MODULE), false)
+MAINLINE_INCLUDE_WIFI_MODULE := true
+endif
+
+ifneq ($(MAINLINE_INCLUDE_VIRT_MODULE), false)
+MAINLINE_INCLUDE_VIRT_MODULE := true
+endif
 
 # Mainline modules - APK type
 PRODUCT_PACKAGES += \
@@ -45,10 +60,10 @@ PRODUCT_PACKAGES += \
     PrebuiltGoogleTelemetryTvp
 
 # Ingesting networkstack.x509.pem
-PRODUCT_MAINLINE_SEPOLICY_DEV_CERTIFICATES=vendor/mainline_modules/build/certificates
+PRODUCT_MAINLINE_SEPOLICY_DEV_CERTIFICATES=vendor/google/modules/build/certificates
 
 # Additional sepolicies
--include vendor/mainline_modules/build/sepolicy/sepolicy.mk
+include vendor/google/modules/build/sepolicy/sepolicy.mk
 
 # Overlay packages for APK-type modules
 PRODUCT_PACKAGES += \
@@ -69,6 +84,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     PartnerModulesSettingsOverlay \
     PartnerModulesPermissionControllerOverlay
+
+# Overlay
+ifeq ($(TARGET_SUPPORTS_NOW_PLAYING), true)
+PRODUCT_PACKAGES += \
+	ApexNowPlayingOverlay
+else
+PRODUCT_PACKAGES += \
+	ApexOverlay
+endif
+PRODUCT_PACKAGES += \
+	ApexSettingsOverlay \
+	DocumentsUIGoogleOverlayExtra \
+	CaptivePortalLoginOverlayExtra \
+	CellBroadcastReceiverOverlayExtra \
+	CellBroadcastServiceOverlayExtra \
+	GoogleConfigOverlayExtra
 
 # Configure APEX as updatable
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
